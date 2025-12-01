@@ -1,0 +1,22 @@
+name: C Program CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Compile main program
+      run: gcc main.c sum.c -o main
+
+    - name: Compile test file
+      run: gcc test.c sum.c -o test
+
+    - name: Run tests
+      run: ./test
